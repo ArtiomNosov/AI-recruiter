@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация — HRAI</title>
+  <link
+  rel="stylesheet"
+  href="https://unpkg.com/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="{% static 'landing/styles.css' %}">
+</head>
+<body>
+  <div class="main-header">
+    <span class="main-header__hr">HR</span>
+    <span class="main-header__ai">AI</span>
+  </div>
+  <div class="split-screen">
+    <div class="left-panel">
+        <div class="promo-wrapper">
+          <h2>HR AI — загрузите резюме<br> или оставте вакансию,<br> дальше работаем мы</h2>
+          <div class="promo-box">
+            <ul class="promo-list">
+                <li><i class="fas fa-clock"></i> Больше не ждите месяцы</li>
+                <li><i class="fa-solid fa-user-check"></i> Больше собеседований – меньше ожиданий</li>
+                <li><i class="fas fa-handshake"></i> Ваше резюме заслужило мгновенного внимания</li>
+                <li><i class="fas-solid fa-credit-card"></i> Ваше время стоит дороже</li>
+                <li><i class="fas fa-briefcase"></i> Ваши конкуренты уже сократили срок подбора на 70%</li>
+              </ul>
+          </div>
+        </div>
+    </div>
+    <div class="right-panel">
+      <div class="form-wrapper">
+        <h1>Регистрация</h1>
+
+        <form method="post" novalidate>
+          {% csrf_token %}
+          {% if form.errors %}
+          <div class="form-errors">
+            <ul>
+              {% for field in form %}
+                {% for error in field.errors %}
+                  <li>{{ field.label }}: {{ error }}</li>
+                {% endfor %}
+              {% endfor %}
+              {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+          <div>
+            {{ form.username.label_tag }}
+            {{ form.username }}
+          </div>
+          <div>
+            {{ form.email.label_tag }}
+            {{ form.email }}
+          </div>
+          <div>
+            {{ form.phone.label_tag }}
+            {{ form.phone }}
+          </div>
+          <div>
+            {{ form.password1.label_tag }}
+            {{ form.password1 }}
+          </div>
+          <div>
+            {{ form.password2.label_tag }}
+            {{ form.password2 }}
+          </div>
+
+          <button type="submit">Зарегистрироваться</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
