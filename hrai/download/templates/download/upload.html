@@ -1,0 +1,39 @@
+{# download/templates/download/upload.html #}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Загрузить резюме — HRAI</title>
+  <link rel="stylesheet" href="{% static 'download/styles.css' %}">
+</head>
+<body>
+  <header class="upload-header">
+    <img src="{% static 'download/images/logo.png' %}" alt="HRAI logo" class="upload-logo">
+    {# здесь, если нужен ваш «топ-бар», можно вставить nav-пункты #}
+  </header>
+
+  <main class="upload-main">
+    <h1 class="upload-title">Загрузить резюме</h1>
+
+    <form method="post" enctype="multipart/form-data" novalidate class="upload-form">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+
+      <div class="block block--light">
+        <label for="{{ form.vacancy.id_for_label }}">Вакансия</label>
+        {{ form.vacancy }}
+        {{ form.vacancy.errors }}
+      </div>
+
+      <div class="block block--dark">
+        <label for="{{ form.file.id_for_label }}">Резюме (PDF/DOC)</label>
+        {{ form.file }}
+        {{ form.file.errors }}
+      </div>
+
+      <button type="submit" class="btn-upload">Загрузить</button>
+    </form>
+  </main>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}HRAI{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'landing/styles.css' %}">
+</head>
+<body>
+  <!-- здесь можно вставить общий header/nav -->
+  {% block content %}{% endblock %}
+  <!-- и общий footer, если нужно -->
+</body>
+</html>

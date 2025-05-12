@@ -1,0 +1,213 @@
+/* download/static/download/styles.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #222;
+  }
+  
+  .upload-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: #f5f5f5;
+  }
+  
+  .upload-logo {
+    height: 40px;
+    margin-right: auto;
+  }
+  
+  .upload-main {
+    max-width: 480px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  .upload-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .upload-form .block {
+    padding: 2rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+  }
+  
+  .block--light {
+    background: #e0e0e0;
+  }
+  
+  .block--dark {
+    background: #ccc;
+  }
+  
+  .upload-form label {
+    display: block;
+    margin-bottom: 2rem;
+    font-weight: bold;
+  }
+  
+  .upload-form select,
+  .upload-form input[type="file"] {
+    width: 100%;
+  }
+  
+  .btn-upload {
+    display: block;
+    width: 100%;
+    padding: 2rem;
+    background: #222;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  
+  .btn-upload:hover {
+    background: #444;
+  }
+  
+  .upload-header {
+    background: #f5f5f5; /* просто светло-серый, без background-image */
+  }
+
+  /* контейнер */
+.tools-main {
+    max-width: 700px;
+    margin: 4rem auto;
+    padding: 0 1rem;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* заголовок */
+  .tools-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #222;
+  }
+  
+  /* сам список убираем маркеры */
+  .resume-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* каждый пункт */
+  .resume-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f5f5f5;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+  }
+  
+  /* информация о резюме */
+  .resume-info {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  /* контейнер для иконок */
+  .resume-actions {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  /* общие стили для иконок */
+  .resume-actions .icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    filter: invert(10%);
+  }
+  
+  /* форма удаления, чтобы кнопка шли в ряд */
+  .delete-form {
+    display: inline;
+  }
+  
+  /* сообщение, если нет резюме */
+  .no-resumes {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  /* makes link look like a button/icon without default underlines */
+  .icon-button {
+    color: #222;           /* здесь ваш нужный цвет */
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  
+  /* common sizing and alignment for inline SVG icons */
+  .icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;   /* aligns icon with text/base line */
+    /* fill comes from currentColor */
+  }
+  
+  .icon-button:focus,
+.icon-button:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* В контейнере .resume-actions уже display:flex, просто добавим выравнивание по центру */
+.resume-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;    /* Центрирует все дочерние элементы по вертикали */
+  }
+  
+  /* Убедимся, что иконка и её обёртка — флекс-элементы */
+  .icon-button,
+  .icon-link {              /* если это <a> для скачивания */
+    display: flex;
+    align-items: center;    /* Центрирует SVG внутри */
+    justify-content: center;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Задаём SVG-кам фиксированный размер и блоковый рендер */
+  .icon-button .icon,
+  .icon-link .icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Сбрасываем любые границы и контура у кнопки-иконки */
+.icon-button,
+.icon-button:focus,
+.icon-button:focus-visible {
+  outline: none;
+  box-shadow: none;
+  border: none;       /* убираем рамку, если она была */
+}
+
+/* Если вы используете <a> с классом .icon-link для скачивания */
+.icon-link,
+.icon-link:focus,
+.icon-link:focus-visible {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  text-decoration: none; /* у ссылки тоже уберём подчёркивание */
+}
