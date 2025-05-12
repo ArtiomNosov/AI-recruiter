@@ -26,14 +26,14 @@ html, body {
 
 .main-header__hr {
   color: #fff;
-  position: absolute;
+  position: relative;
   right: 50%;;
   font-size: clamp(2.5rem, 8vw, 5rem);
   text-align: right;
 }
 
 .main-header__ai {
-  position: absolute;
+  position: relative;
   left: 50%;
   color: #06a68a;
   font-size: clamp(2.5rem, 8vw, 5rem);

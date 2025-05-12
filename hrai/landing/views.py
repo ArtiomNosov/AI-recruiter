@@ -21,3 +21,7 @@ class ConnectionView(TemplateView):
 
 class ConnectionView(TemplateView):
     template_name = 'landing/connection.html'
+
+
+class ProfileView(TemplateView):
+    template_name = 'landing/profile.html'#ТУТ ДОЛЖЕН БЫТЬ ПРОФИЛЬ
