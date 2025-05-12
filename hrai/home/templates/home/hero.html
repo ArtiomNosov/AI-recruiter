@@ -1,0 +1,135 @@
+<!-- templates/home/hero.html -->
+<section class="hero-section">
+    <h2 class="hero-heading">Heading</h2>
+    <p class="hero-subheading">Subheading</p>
+
+    <div class="quotes-grid">
+        <!-- Цитата 1 -->
+        <div class="quote-card">
+            <div class="quote-content">
+                <div class="quote-mark">"</div>
+                <p class="quote-text">Quote</p>
+            </div>
+            <div class="quote-meta">
+                <h3 class="quote-title">Title</h3>
+                <p class="quote-description">Description</p>
+            </div>
+        </div>
+
+        <!-- Цитата 2 -->
+        <div class="quote-card">
+            <div class="quote-content">
+                <div class="quote-mark">"</div>
+                <p class="quote-text">Quote</p>
+            </div>
+            <div class="quote-meta">
+                <h3 class="quote-title">Title</h3>
+                <p class="quote-description">Description</p>
+            </div>
+        </div>
+
+        <!-- Цитата 3 -->
+        <div class="quote-card">
+            <div class="quote-content">
+                <div class="quote-mark">"</div>
+                <p class="quote-text">Quote</p>
+            </div>
+            <div class="quote-meta">
+                <h3 class="quote-title">Title</h3>
+                <p class="quote-description">Description</p>
+            </div>
+        </div>
+
+        <!-- Цитата 4 -->
+        <div class="quote-card">
+            <div class="quote-content">
+                <div class="quote-mark">"</div>
+                <p class="quote-text">Quote</p>
+            </div>
+            <div class="quote-meta">
+                <h3 class="quote-title">Title</h3>
+                <p class="quote-description">Description</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.hero-section {
+    margin: 3rem 0;
+    padding: 0 1rem;
+}
+
+.hero-heading {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.hero-subheading {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.quotes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.quote-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quote-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.quote-content {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.quote-mark {
+    position: absolute;
+    font-size: 3rem;
+    color: #e0e0e0;
+    top: -1rem;
+    left: -0.5rem;
+    font-family: serif;
+    line-height: 1;
+}
+
+.quote-text {
+    font-size: 1.1rem;
+    color: #555;
+    font-style: italic;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.quote-meta {
+    border-top: 1px solid #f0f0f0;
+    padding-top: 1rem;
+}
+
+.quote-title {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.3rem;
+}
+
+.quote-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+</style>
