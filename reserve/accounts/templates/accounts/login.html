@@ -1,0 +1,32 @@
+{% extends "accounts/base.html" %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+<div class="hero-form">
+    <div class="text-content">
+        <h1 class="title">Вход</h1>
+        <p class="subtitle">Введите свои данные</p>
+    </div>
+
+    <form class="form-contact" method="post">
+        {% csrf_token %}
+        
+        <div class="input-field">
+            <label class="input-label" for="email">Email</label>
+            <input type="email" id="email" name="email" class="input-element" placeholder="Enter your email" required>
+        </div>
+        
+        <div class="input-field">
+            <label class="input-label" for="password">Password</label>
+            <input type="password" id="password" name="password" class="input-element" placeholder="Enter your password" required>
+        </div>
+        
+        <button type="submit" class="submit-button">Sign In</button>
+        
+        <div class="auth-link">
+            У Вас еще нет аккаунта? <a href="{% url 'registration_step1' %}">Registration</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

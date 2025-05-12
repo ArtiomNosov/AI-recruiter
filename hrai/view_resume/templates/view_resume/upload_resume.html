@@ -1,0 +1,52 @@
+{% extends "accounts/base.html" %}
+
+{% block title %}Загрузка резюме{% endblock %}
+
+{% block content %}
+<div class="hero-form">
+    <div class="text-content">
+        <h1 class="title">Загрузить резюме</h1>
+        <p class="subtitle">Выберите вакансию и файл</p>
+    </div>
+
+    <form class="form-contact" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="input-field">
+            <label class="input-label">Вакансия</label>
+            {{ form.vacancy }}
+            {{ form.vacancy.errors }}
+        </div>
+        
+        <div class="input-field">
+            <label class="input-label">Файл резюме</label>
+            {{ form.file }}
+            {{ form.file.errors }}
+            <p class="file-hint">Поддерживаемые форматы: PDF, DOC, DOCX</p>
+        </div>
+        
+        <button type="submit" class="submit-button">Загрузить</button>
+    </form>
+</div>
+
+<style>
+.file-hint {
+    font-size: 14px;
+    color: #757575;
+    margin-top: 8px;
+}
+
+.vacancy-select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.resume-file-input {
+    width: 100%;
+    margin-top: 8px;
+}
+</style>
+{% endblock %}

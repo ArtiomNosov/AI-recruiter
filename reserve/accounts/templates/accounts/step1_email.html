@@ -1,0 +1,26 @@
+{% extends "accounts/base.html" %}
+
+{% block title %}Введите email{% endblock %}
+
+{% block content %}
+<div class="hero-form">
+    <div class="text-content">
+        <h1 class="title">Регистрация</h1>
+        <p class="subtitle">Шаг 1 из 2</p>
+    </div>
+
+    <form class="form-contact" method="post">
+        {% csrf_token %}
+        
+        <div class="input-field">
+            <label class="input-label" for="email">Email</label>
+            <input type="email" id="email" name="email" class="input-element" placeholder="Введите ваш email" required>
+            {% if form.email.errors %}
+                <div class="error-message">{{ form.email.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <button type="submit" class="submit-button">Продолжить</button>
+    </form>
+</div>
+{% endblock %}

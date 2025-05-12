@@ -1,0 +1,51 @@
+{% extends "view_resume/base.html" %}
+
+{% block title %}Список резюме{% endblock %}
+
+{% block content %}
+<div class="hero-form">
+    <div class="text-content">
+        <h1 class="title">Список резюме</h1>
+        <p class="subtitle">Все доступные резюме кандидатов</p>
+    </div>
+
+    <div class="resume-list">
+        {% for resume in resumes %}
+        <div class="resume-item">
+            <h3>{{ resume.user.get_full_name|default:resume.user.username }}</h3>
+            <p>Вакансия: {{ resume.vacancy.title }}</p>
+            <p>Дата загрузки: {{ resume.uploaded_at|date:"d.m.Y" }}</p>
+            <a href="{% url 'resume_detail' resume.id %}" class="view-btn">Просмотр</a>
+        </div>
+        {% empty %}
+        <p>Нет доступных резюме</p>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+.resume-list {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.resume-item {
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.view-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #2C2C2C;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "accounts/base.html" %}
+
+{% block title %}Завершение регистрации{% endblock %}
+
+{% block content %}
+<div class="hero-form">
+    <div class="text-content">
+        <h1 class="title">Завершите регистрацию</h1>
+        <p class="subtitle">Шаг 2 из 2</p>
+    </div>
+
+    <form class="form-contact" method="post">
+        {% csrf_token %}
+        
+        <div class="input-field">
+            <label class="input-label" for="first_name">Имя</label>
+            <input type="text" id="first_name" name="first_name" class="input-element" placeholder="Введите ваше имя" required>
+            {% if form.first_name.errors %}
+                <div class="error-message">{{ form.first_name.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="input-field">
+            <label class="input-label" for="last_name">Фамилия</label>
+            <input type="text" id="last_name" name="last_name" class="input-element" placeholder="Введите вашу фамилию" required>
+            {% if form.last_name.errors %}
+                <div class="error-message">{{ form.last_name.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="input-field">
+            <label class="input-label" for="password1">Пароль</label>
+            <input type="password" id="password1" name="password1" class="input-element" placeholder="Придумайте пароль" required>
+            {% if form.password1.errors %}
+                <div class="error-message">{{ form.password1.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="input-field">
+            <label class="input-label" for="password2">Подтвердите пароль</label>
+            <input type="password" id="password2" name="password2" class="input-element" placeholder="Повторите пароль" required>
+            {% if form.password2.errors %}
+                <div class="error-message">{{ form.password2.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <button type="submit" class="submit-button">Зарегистрироваться</button>
+    </form>
+</div>
+{% endblock %}

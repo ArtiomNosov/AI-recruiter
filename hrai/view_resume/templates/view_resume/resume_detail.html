@@ -1,0 +1,65 @@
+{% extends "view_resume/base.html" %}
+
+{% block title %}{{ resume.user.get_full_name }} - Резюме{% endblock %}
+
+{% block content %}
+<div class="hero-form">
+    <div class="text-content">
+        <h1 class="title">{{ resume.user.get_full_name|default:resume.user.username }}</h1>
+        <p class="subtitle">{{ resume.vacancy.title }}</p>
+    </div>
+
+    <div class="resume-container">
+        <div class="resume-card">
+            <div class="resume-meta">
+                <p><strong>Формат:</strong> {{ resume.get_fmt_display }}</p>
+                <p><strong>Дата загрузки:</strong> {{ resume.uploaded_at|date:"d.m.Y H:i" }}</p>
+            </div>
+            
+            <div class="resume-actions">
+                <a href="{{ resume.file.url }}" class="download-btn" download>
+                    Скачать резюме
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.resume-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.resume-card {
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    padding: 32px;
+    margin-top: 24px;
+}
+
+.resume-meta {
+    margin-bottom: 24px;
+}
+
+.resume-meta p {
+    margin: 8px 0;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #2C2C2C;
+    color: #FFFFFF;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 16px;
+}
+
+.download-btn:hover {
+    background: #1E1E1E;
+}
+</style>
+{% endblock %}
