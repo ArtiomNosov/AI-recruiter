@@ -3,6 +3,8 @@
 {% block title %}{{ resume.user.get_full_name }} - Резюме{% endblock %}
 
 {% block content %}
+
+
 <div class="hero-form">
     <div class="text-content">
         <h1 class="title">{{ resume.user.get_full_name|default:resume.user.username }}</h1>
@@ -14,6 +16,54 @@
             <div class="resume-meta">
                 <p><strong>Формат:</strong> {{ resume.get_fmt_display }}</p>
                 <p><strong>Дата загрузки:</strong> {{ resume.uploaded_at|date:"d.m.Y H:i" }}</p>
+                <p><strong>Рейтинг:</strong> 
+                    <span class="rating">{{ resume.likes.count }}</span>
+                    <span class="rating-actions">
+                        <a href="{% url 'like_resume' resume.id %}?action=like" class="like-btn">👍</a>
+                        <a href="{% url 'like_resume' resume.id %}?action=dislike" class="dislike-btn">👎</a>
+                    </span>
+                </p>
+            </div>
+            
+            <div class="resume-preview">
+                {% if file_ext == 'pdf' %}
+                <!-- PDF Viewer и текст -->
+                <div class="preview-options">
+                    <button class="view-btn active" data-target="pdf-view">Просмотр PDF</button>
+                    <button class="view-btn" data-target="text-view">Текст резюме</button>
+                </div>
+                
+                <div id="pdf-view" class="view-content active">
+                    <iframe src="{{ file_url }}#toolbar=0" width="100%" height="600px" style="border: none;"></iframe>
+                </div>
+                
+                <div id="text-view" class="view-content">
+                    <div class="text-content">
+                        {% if text_content %}
+                            <pre>{{ text_content }}</pre>
+                        {% else %}
+                            <p>Не удалось извлечь текст из файла</p>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                {% elif file_ext in 'doc docx' and google_docs_url %}
+                <!-- DOC/DOCX через Google Docs -->
+                <iframe src="{{ google_docs_url }}" width="100%" height="600px" style="border: none;"></iframe>
+                <p class="doc-notice">
+                    Файл отображается через Google Docs Viewer. 
+                    <a href="{{ file_url }}" download>Скачать оригинал</a>
+                </p>
+                
+                {% else %}
+                <!-- Неподдерживаемый формат -->
+                <div class="unsupported-format">
+                    <p>Формат файла не поддерживается для просмотра.</p>
+                    <a href="{{ file_url }}" download class="download-btn">
+                        <i class="fas fa-download"></i> Скачать файл (.{{ file_ext }})
+                    </a>
+                </div>
+                {% endif %}
             </div>
             
             <div class="resume-actions">
@@ -48,6 +98,72 @@
     margin: 8px 0;
 }
 
+.resume-preview {
+    margin: 20px 0;
+    border: 1px solid #eee;
+    padding: 10px;
+    min-height: 300px;
+}
+
+    
+.preview-options {
+        margin-bottom: 15px;
+    }
+    
+
+.view-btn {
+        padding: 8px 16px;
+        margin-right: 8px;
+        background: #f0f0f0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    .view-btn.active {
+        background: #2C2C2C;
+        color: white;
+    }
+
+.view-content {
+    display: none;
+}
+
+.view-content.active {
+    display: block;
+}
+
+.text-content {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background: #f9f9f9;
+        border-radius: 5px;
+        padding: 15px;
+        margin: 10px 0;
+        white-space: pre-wrap; /* Сохраняет переносы строк */
+        overflow-wrap: break-word; /* Перенос длинных слов */
+        border: 1px solid #e0e0e0;
+    }
+
+.rating {
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.rating-actions a {
+    text-decoration: none;
+    margin: 0 5px;
+    font-size: 18px;
+}
+
+.like-btn:hover {
+    color: green;
+}
+
+.dislike-btn:hover {
+    color: red;
+}
+
 .download-btn {
     display: inline-block;
     padding: 12px 24px;
@@ -62,4 +178,19 @@
     background: #1E1E1E;
 }
 </style>
+
+<script>
+document.querySelectorAll('.view-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        // Удаляем active у всех кнопок и контента
+        document.querySelectorAll('.view-btn, .view-content').forEach(el => {
+            el.classList.remove('active');
+        });
+        
+        // Добавляем active к текущей кнопке и соответствующему контенту
+        this.classList.add('active');
+        document.getElementById(this.dataset.target).classList.add('active');
+    });
+});
+</script>
 {% endblock %}

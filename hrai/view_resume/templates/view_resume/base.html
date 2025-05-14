@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AI-Recruiter{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         /* Reset and base styles */
@@ -30,23 +31,6 @@
             align-items: center;
             flex: 1;
             background: #FFFFFF;
-        }
-
-        .auth-link {
-            text-align: center;
-            margin-top: 16px;
-            font-size: 14px;
-            color: #757575;
-        }
-
-        .auth-link a {
-            color: #2C2C2C;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .auth-link a:hover {
-            text-decoration: underline;
         }
 
         /* Header  */
@@ -334,12 +318,52 @@
             margin-top: 4px;
         }
     </style>
-<html>
-<head>
-    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    {% block content %}{% endblock %}
-    {% csrf_token %}
+    <header class="header">
+        <div class="header-container">
+            <div class="header-content">
+                <img src="{% static 'images/logo-without-background.jpg' %}" alt="Логотип" class="logo">
+                <nav class="nav-list">
+                    <a href="#" class="nav-pill">community</a>
+                    <a href="#" class="nav-pill">pricing</a>
+                    <a href="#" class="nav-pill">contact</a>
+                </nav>
+            </div>
+            <div class="auth-buttons">
+                <button class="btn btn-login">sign in</button>
+                <button class="btn btn-register">register</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-wrapper">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <div class="footer-column">
+                    <h3 class="footer-heading">Use cases</h3>
+                    <a href="#" class="footer-link">HR Automation</a>
+                    <a href="#" class="footer-link">Candidate Screening</a>
+                    <a href="#" class="footer-link">Interview Scheduling</a>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-heading">Explore</h3>
+                    <a href="#" class="footer-link">Features</a>
+                    <a href="#" class="footer-link">Pricing</a>
+                    <a href="#" class="footer-link">Case Studies</a>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-heading">Resources</h3>
+                    <a href="#" class="footer-link">Blog</a>
+                    <a href="#" class="footer-link">Help Center</a>
+                    <a href="#" class="footer-link">API Docs</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
