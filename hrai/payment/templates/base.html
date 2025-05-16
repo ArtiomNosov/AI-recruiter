@@ -1,0 +1,669 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AI-Recruiter{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FFFFFF;
+            min-width: 1200px;
+        }
+
+        /* Main container */
+        .page-wrapper {
+            width: 1200px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            align-content: flex-start;
+            padding: 32px;
+            gap: 0px 24px;
+            width: 100%;
+            height: 99px;
+            background: #FFFFFF;
+            border-bottom: 1px solid #D9D9D9;
+            flex: none;
+            order: 0;
+            align-self: stretch;
+            flex-grow: 0;
+            margin: 0 auto;
+            justify-content: space-between;
+        }
+
+        /* Логотип и навигация */
+        .header-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0px;
+            gap: 24px;
+            flex: none;
+            order: 0;
+            flex-grow: 1;
+        }
+
+        .logo {
+            width: auto;
+            height: auto;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        /* Навигационные ссылки */
+        .nav-list {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: flex-start;
+            align-content: flex-end;
+            padding: 0px;
+            gap: 24px;
+            width: 870px;
+            height: 32px;
+            flex: none;
+            order: 1;
+            flex-grow: 1;
+            margin-right: auto;
+            margin-left:40px;
+        }
+
+        .nav-pill {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 8px 12 px;
+            gap: 8px;
+            height: 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 100%;
+            color: #1E1E1E;
+            flex: none;
+        }
+
+        .nav-pill.active {
+            background: #F5F5F5;
+        }
+
+        /* Кнопки авторизации */
+       .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn {
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            width: 100px;
+            height: 40px;
+            border-radius: 8px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 16px;
+            cursor: pointer;
+        }
+
+        .btn-login {
+            background: #E3E3E3;
+            border: 1px solid #767676;
+            color: #1E1E1E;
+        }
+
+        .btn-register {
+            background: #2C2C2C;
+            border: 1px solid #2C2C2C;
+            color: #F5F5F5;
+        }
+       .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 160px 64px;
+            width: 100%;
+            height: 452px;
+            background: #F5F5F5;
+            flex: 1;
+            order: 1;
+            align-self: stretch;
+            flex-grow: 0;
+       }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0px;
+            gap: 8px;
+            width: 391px;
+            height: 132px;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .hero-title {
+            width: 391px;
+            height: 86px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 72px;
+            line-height: 120%;
+            text-align: center;
+            letter-spacing: -0.03em;
+            color: #1E1E1E;
+            margin: 0;
+            flex: none;
+            order: 0;
+            align-self: stretch;
+            flex-grow: 0;
+        }
+
+        .hero-subtitle {
+            width: 391px;
+            height: 38px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 32px;
+            line-height: 120%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #757575;
+            margin: 0;
+            flex: none;
+            order: 1;
+            align-self: stretch;
+            flex-grow: 0;
+        }
+        .pricing-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 64px;
+            gap: 48px;
+            width: 100%;
+            background: #FFFFFF;
+        }
+
+        /* Navigation Pills */
+        .period-selector {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 8px;
+            width: 204px;
+            height: 32px;
+        }
+
+        .period-pill {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 8px;
+            gap: 8px;
+            height: 32px;
+            border-radius: 8px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 16px;
+            color: #1E1E1E;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .period-pill.active {
+            background: #F5F5F5;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 64px;
+            width: 1072px;
+        }
+
+        /* Pricing Card */
+        .pricing-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 32px;
+            gap: 24px;
+            width: 314.67px;
+            min-width: 300px;
+            height: 550px;
+            border-radius: 8px;
+
+        }
+
+        .card-white {
+            background: #FFFFFF;
+            border: 1px solid #D9D9D9;
+        }
+
+        .card-black {
+            background: #2C2C2C;
+            border: 1px solid #2C2C2C;
+        }
+
+        .card-top {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            height: 267px;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 29px;
+            text-align: center;
+            letter-spacing: -0.02em;
+        }
+
+        .title-white {
+            color: #1E1E1E;
+        }
+
+        .title-black {
+            color: #F5F5F5;
+        }
+
+        .price-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 48px;
+        }
+
+        .price-currency {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 24px;
+            letter-spacing: -0.02em;
+            margin-right: 4px;
+        }
+
+        .price-amount {
+            font-weight: 700;
+            font-size: 48px;
+            line-height: 48px;
+            letter-spacing: -0.02em;
+        }
+
+        .price-period {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 25px;
+            margin-left: 4px;
+        }
+
+        .price-white {
+            color: #1E1E1E;
+        }
+
+        .price-black {
+            color: #F5F5F5;
+        }
+
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 22px;
+        }
+
+        .feature-item:before {
+            content: "•";
+            margin-right: 8px;
+        }
+
+        .feature-white {
+            color: #757575;
+        }
+
+        .feature-black {
+            color: #F5F5F5;
+        }
+
+        .card-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+            gap: 8px;
+            width: 100%;
+            height: 40px;
+            border-radius: 8px;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 16px;
+            cursor: pointer;
+            border: 1px solid;
+        }
+
+        .button-black {
+            background: #2C2C2C;
+            border-color: #2C2C2C;
+            color: #F5F5F5;
+        }
+
+        .button-white {
+            background: #E3E3E3;
+            border-color: #767676;
+            color: #1E1E1E;
+        }
+        .accordion-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 64px;
+            gap: 48px;
+            width: 100%;
+            background: #FFFFFF;
+        }
+
+        .accordion-heading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+        }
+
+        .accordion-main-title {
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 29px;
+            letter-spacing: -0.02em;
+            color: #1E1E1E;
+        }
+
+        .accordion-subtitle {
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            color: #757575;
+        }
+
+        .accordion-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 50%;
+        }
+
+        .accordion-item {
+            border: 1px solid #D9D9D9;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background: #F5F5F5;
+            cursor: pointer;
+        }
+
+        .accordion-title {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 22px;
+            color: #1E1E1E;
+        }
+
+        .accordion-icon {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .accordion-icon:before,
+        .accordion-icon:after {
+            content: '';
+            position: absolute;
+            background: #1E1E1E;
+            transition: transform 0.3s;
+        }
+
+        .accordion-icon:before {
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            transform: translateY(-50%);
+        }
+
+        .accordion-icon:after {
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            transform: translateX(-50%);
+        }
+
+        .accordion-item.active .accordion-icon:after {
+            transform: translateX(-50%) rotate(90deg);
+        }
+
+        .accordion-content {
+            padding: 0 16px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+            background: #FFFFFF;
+        }
+
+        .accordion-item.active .accordion-content {
+            padding: 16px;
+            max-height: 200px;
+        }
+
+        .accordion-description {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 22px;
+            color: #1E1E1E;
+        }
+       .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 40px;
+        background-color: #f8f8f8;
+    }
+
+    .footer-left {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 16px;
+    }
+
+    .social-icon {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+    }
+
+    .footer-right {
+        display: flex;
+        gap: 80px;
+    }
+
+    .footer-column {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .footer-heading {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        color: #1E1E1E;
+        margin-bottom: 8px;
+    }
+
+    .footer-link {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        color: #757575;
+        text-decoration: none;
+    }
+
+    .footer-link:hover {
+        color: #1E1E1E;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 16px;
+    }
+
+    .social-icon {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+    }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <!-- Ваш хедер -->
+        <div class="header-content">
+            <img src="{% static 'images/img.png' %}" alt="AI-Recruiter" class="logo">
+            <nav class="nav-list">
+                <a href="#" class="nav-pill">Сообщество</a>
+                <a href="#" class="nav-pill">Цены</a>
+                <a href="#" class="nav-pill">Контакты</a>
+            </nav>
+        </div>
+        <div class="auth-buttons">
+            <button class="btn btn-login">Вход</button>
+            <button class="btn btn-register">Регистрация</button>
+        </div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer class="footer">
+        <div class="footer-left">
+            <div class="social-icons">
+    <a href="https://telegram.org" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/240px-Telegram_logo.svg.png" alt="Telegram" class="social-icon">
+    </a>
+    <a href="https://instagram.com" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/240px-Instagram_logo_2016.svg.png" alt="Instagram" class="social-icon">
+    </a>
+    <a href="https://youtube.com" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/240px-YouTube_full-color_icon_%282017%29.svg.png" alt="YouTube" class="social-icon">
+    </a>
+</div>
+        </div>
+        <div class="footer-right">
+            <div class="footer-column">
+                <h3 class="footer-heading">Use cases</h3>
+                <a href="#" class="footer-link">HR Automation</a>
+                <a href="#" class="footer-link">Candidate Screening</a>
+                <a href="#" class="footer-link">Interview Scheduling</a>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-heading">Explore</h3>
+                <a href="#" class="footer-link">Features</a>
+                <a href="#" class="footer-link">Pricing</a>
+                <a href="#" class="footer-link">Case Studies</a>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-heading">Resources</h3>
+                <a href="#" class="footer-link">Blog</a>
+                <a href="#" class="footer-link">Help Center</a>
+                <a href="#" class="footer-link">API Docs</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('active');
+
+                // Close other items
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

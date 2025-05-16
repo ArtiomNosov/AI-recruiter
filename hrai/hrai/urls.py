@@ -10,6 +10,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('download/', include('download.urls')),
     path('view_resume/', include('view_resume.urls')),
+    path('payment/', include('payment.urls')),
 ]
 
 
