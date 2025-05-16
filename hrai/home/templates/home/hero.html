@@ -1,43 +1,45 @@
 <!-- templates/home/hero.html -->
 <section class="hero-section">
-    <h2 class="hero-heading">Heading</h2>
-    <p class="hero-subheading">Subheading</p>
+    <h2 class="hero-heading">Navigation</h2>
 
     <div class="quotes-grid">
-        <!-- Цитата 1 -->
-        <div class="quote-card">
-            <div class="quote-content">
-                <div class="quote-mark">"</div>
-                <p class="quote-text">Quote</p>
+        <!-- Цитата 1 (теперь без btn--secondary) -->
+        <a href="{% url 'resume_list' %}" class="quote-card-link">
+            <div class="quote-card">
+                <div class="quote-content">
+                    <div class="quote-mark">"</div>
+                    <p class="quote-text">Resume</p>
+                </div>
+                <div class="quote-meta">
+                    <h3 class="quote-title">Review the resume</h3>
+                </div>
             </div>
-            <div class="quote-meta">
-                <h3 class="quote-title">Title</h3>
-                <p class="quote-description">Description</p>
-            </div>
-        </div>
+        </a>
 
         <!-- Цитата 2 -->
         <div class="quote-card">
-            <div class="quote-content">
-                <div class="quote-mark">"</div>
-                <p class="quote-text">Quote</p>
-            </div>
-            <div class="quote-meta">
-                <h3 class="quote-title">Title</h3>
-                <p class="quote-description">Description</p>
-            </div>
+             <a href="{% url 'resume_upload' %}" class="quote-card-link">
+                <div class="quote-content">
+                    <div class="quote-mark">"</div>
+                    <p class="quote-text">Resume</p>
+                </div>
+                <div class="quote-meta">
+                    <h3 class="quote-title">Upload Resume</h3>
+                </div>
+             </a>
         </div>
 
         <!-- Цитата 3 -->
         <div class="quote-card">
-            <div class="quote-content">
-                <div class="quote-mark">"</div>
-                <p class="quote-text">Quote</p>
-            </div>
-            <div class="quote-meta">
-                <h3 class="quote-title">Title</h3>
-                <p class="quote-description">Description</p>
-            </div>
+             <a href="{% url 'accounts.urls' %}" class="btn btn--secondary">
+                <div class="quote-content">
+                    <div class="quote-mark">"</div>
+                    <p class="quote-text">Price</p>
+                </div>
+                <div class="quote-meta">
+                    <h3 class="quote-title">Title</h3>
+                </div>
+             </a>
         </div>
 
         <!-- Цитата 4 -->
@@ -66,17 +68,18 @@
     margin-bottom: 0.5rem;
 }
 
-.hero-subheading {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 2rem;
-}
-
 .quotes-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin-top: 2rem;
+}
+
+/* Новый стиль для ссылки-карточки */
+.quote-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .quote-card {
@@ -86,6 +89,7 @@
     background: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%; /* Добавлено для одинаковой высоты */
 }
 
 .quote-card:hover {
@@ -109,11 +113,11 @@
 }
 
 .quote-text {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #555;
     font-style: italic;
     padding-left: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.3rem;
 }
 
 .quote-meta {
@@ -122,9 +126,9 @@
 }
 
 .quote-title {
-    font-size: 1rem;
+    font-size: 1.3rem;
     color: #333;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.1rem;
 }
 
 .quote-description {
