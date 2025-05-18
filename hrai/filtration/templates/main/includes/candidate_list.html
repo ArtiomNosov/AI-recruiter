@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Recruiter - Подбор кандидатов</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Общие стили (как в предыдущем примере) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FFFFFF;
+            min-width: 1200px;
+        }
+
+        .page-wrapper {
+            width: 1200px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header (как в предыдущем примере) */
+        .header {
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 32px;
+            width: 100%;
+            height: 99px;
+            background: #FFFFFF;
+            border-bottom: 1px solid #D9D9D9;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-grow: 1;
+        }
+
+        .logo {
+            width: 150px;
+            height: auto;
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 24px;
+            margin-left: 40px;
+            margin-right: auto;
+        }
+
+        .nav-pill {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 8px 12px;
+            height: 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 100%;
+            color: #1E1E1E;
+        }
+
+        .nav-pill.active {
+            background: #F5F5F5;
+        }
+
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn {
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            min-width: 100px;
+            height: 40px;
+            border-radius: 8px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 16px;
+            cursor: pointer;
+        }
+
+        .btn-login {
+            background: #E3E3E3;
+            border: 1px solid #767676;
+            color: #1E1E1E;
+        }
+
+        .btn-register {
+            background: #2C2C2C;
+            border: 1px solid #2C2C2C;
+            color: #F5F5F5;
+        }
+
+        /* Основной контент */
+        .content-section {
+            padding: 40px 64px;
+        }
+
+        /* Фильтры */
+        .filters-section {
+            background: #F5F5F5;
+            padding: 32px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+
+        .filters-title {
+            font-weight: 600;
+            font-size: 20px;
+            margin-bottom: 24px;
+            color: #1E1E1E;
+        }
+
+        .filter-group {
+            margin-bottom: 20px;
+        }
+
+        .filter-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #1E1E1E;
+        }
+
+        .filter-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #D9D9D9;
+            border-radius: 8px;
+            font-family: 'Inter';
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #D9D9D9;
+            border-radius: 8px;
+            font-family: 'Inter';
+        }
+
+        /* Вакансия */
+        .vacancy-card {
+            background: #FFFFFF;
+            border: 1px solid #D9D9D9;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .vacancy-title {
+            font-weight: 600;
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: #1E1E1E;
+        }
+
+        .vacancy-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 16px;
+            color: #757575;
+        }
+
+        .vacancy-description {
+            color: #1E1E1E;
+            line-height: 1.6;
+        }
+
+        /* Список резюме */
+        .resumes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .resume-card {
+            background: #FFFFFF;
+            border: 1px solid #D9D9D9;
+            border-radius: 8px;
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .resume-info {
+            flex: 1;
+        }
+
+        .resume-name {
+            font-weight: 600;
+            font-size: 18px;
+            color: #1E1E1E;
+            margin-bottom: 8px;
+        }
+
+        .resume-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 8px;
+            color: #757575;
+        }
+
+        .resume-skills {
+            color: #1E1E1E;
+        }
+
+        .resume-score {
+            background: #2C2C2C;
+            color: #FFFFFF;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .score-high {
+            background: #4CAF50;
+        }
+
+        .score-medium {
+            background: #FFC107;
+        }
+
+        .score-low {
+            background: #F44336;
+        }
+
+        /* Footer (как в предыдущем примере) */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 40px;
+            background-color: #f8f8f8;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 80px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-heading {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 22px;
+            color: #1E1E1E;
+            margin-bottom: 8px;
+        }
+
+        .footer-link {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 22px;
+            color: #757575;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            color: #1E1E1E;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="images/logo.png" alt="AI-Recruiter Логотип" class="logo">
+
+            <nav class="nav-list">
+                <a href="#" class="nav-pill">Сообщество</a>
+                <a href="#" class="nav-pill active">Цены</a>
+                <a href="#" class="nav-pill">Контакты</a>
+            </nav>
+        </div>
+
+        <div class="auth-buttons">
+            <button class="btn btn-login">Вход</button>
+            <button class="btn btn-register">Регистрация</button>
+        </div>
+    </header>
+
+    <main class="page-wrapper">
+        <section class="content-section">
+            <!-- Фильтры -->
+            <div class="filters-section">
+    <h2 class="filters-title">Фильтры резюме</h2>
+    <form method="get">
+        <div class="filter-group">
+            <label class="filter-label">Ключевые навыки</label>
+            <input
+                type="text"
+                class="filter-input"
+                name="skills"
+                placeholder="Введите навыки через запятую"
+                value="{{ form.skills.value|default:'' }}"
+            >
+        </div>
+
+        <div class="filter-group">
+            <label class="filter-label">Опыт работы</label>
+            <select class="filter-select" name="experience">
+                <option value="">Любой опыт</option>
+                {% for value, label in form.experience.field.choices %}
+                    <option
+                        value="{{ value }}"
+                        {% if form.experience.value == value %}selected{% endif %}
+                    >
+                        {{ label }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label class="filter-label">Зарплатные ожидания</label>
+            <select class="filter-select" name="desired_salary">
+                <option value="">Любые</option>
+                {% for value, label in form.desired_salary.field.choices %}
+                    <option
+                        value="{{ value }}"
+                        {% if form.desired_salary.value == value %}selected{% endif %}
+                    >
+                        {{ label }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-register" style="margin-top: 20px;">
+            Применить фильтры
+        </button>
+    </form>
+</div>
+
+            <!-- Вакансия -->
+            <div class="vacancy-card">
+                <h2 class="vacancy-title">Senior Frontend Developer (React)</h2>
+                <div class="vacancy-meta">
+                    <span>Москва</span>
+                    <span>Опыт от 5 лет</span>
+                    <span>от 250 000 ₽</span>
+                </div>
+                <div class="vacancy-description">
+                    <p>Ищем опытного Frontend-разработчика для работы над крупным fintech-проектом. Требуется глубокое знание React, TypeScript и современных подходов к разработке интерфейсов.</p>
+                    <p><strong>Ключевые навыки:</strong> React, TypeScript, Redux, GraphQL, Webpack, Jest, CI/CD</p>
+                </div>
+            </div>
+
+            <!-- Список резюме -->
+            <h2 style="margin-bottom: 16px; font-weight: 600;">Подходящие кандидаты</h2>
+            <div class="resumes-list">
+    {% for resume in resumes %}
+    <div class="resume-card">
+        <div class="resume-info">
+            <h3 class="resume-name">{{ resume.full_name }}</h3>
+            <div class="resume-meta">
+                <span>{{ resume.location }}</span>
+                <span>Опыт: {{ resume.get_experience_display }}</span>
+                <span>Желаемая зарплата: {{ resume.get_desired_salary_display }}</span>
+            </div>
+            <div class="resume-skills">
+                <strong>Навыки:</strong> {{ resume.skills }}
+            </div>
+            <a
+                href="{{ resume.resume_file.url }}"
+                target="_blank"
+                style="display: inline-block; margin-top: 10px;"
+            >
+                Скачать резюме (PDF/DOC)
+            </a>
+        </div>
+        <div class="resume-score
+            {% if resume.score >= 80 %}score-high
+            {% elif resume.score >= 50 %}score-medium
+            {% else %}score-low
+            {% endif %}">
+            {{ resume.score }}%
+        </div>
+    </div>
+    {% endfor %}
+</div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-left">
+            <div class="social-icons">
+                <a href="https://vk.com" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/VK_Logo.svg/240px-VK_Logo.svg.png" alt="VK" class="social-icon">
+                </a>
+                <a href="https://telegram.org" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/240px-Telegram_logo.svg.png" alt="Telegram" class="social-icon">
+                </a>
+                <a href="https://instagram.com" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/240px-Instagram_logo_2016.svg.png" alt="Instagram" class="social-icon">
+                </a>
+                <a href="https://youtube.com" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/240px-YouTube_full-color_icon_%282017%29.svg.png" alt="YouTube" class="social-icon">
+                </a>
+            </div>
+        </div>
+        <div class="footer-right">
+            <div class="footer-column">
+                <h3 class="footer-heading">Use cases</h3>
+                <a href="#" class="footer-link">HR Automation</a>
+                <a href="#" class="footer-link">Candidate Screening</a>
+                <a href="#" class="footer-link">Interview Scheduling</a>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-heading">Explore</h3>
+                <a href="#" class="footer-link">Features</a>
+                <a href="#" class="footer-link">Pricing</a>
+                <a href="#" class="footer-link">Case Studies</a>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-heading">Resources</h3>
+                <a href="#" class="footer-link">Blog</a>
+                <a href="#" class="footer-link">Help Center</a>
+                <a href="#" class="footer-link">API Docs</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'home',
     'download',
     'view_resume',
-    'payment'
+    'payment',
+    'filtration'
 ]
 
 MIDDLEWARE = [

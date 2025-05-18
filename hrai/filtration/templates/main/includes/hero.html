@@ -1,0 +1,11 @@
+{% load static %}
+
+<section class="hero-section">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">{% block hero_title %}Добро пожаловать{% endblock %}</h1>
+            <p class="hero-text">{% block hero_text %}Описание вашего проекта{% endblock %}</p>
+            <a href="{% url 'cta' %}" class="hero-cta">Начать</a>
+        </div>
+    </div>
+</section>
