@@ -11,6 +11,7 @@ urlpatterns = [
     path('download/', include('download.urls')),
     path('view_resume/', include('view_resume.urls')),
     path('payment/', include('payment.urls')),
+    path('filtration', include('filtration.urls'))
 ]
 
 

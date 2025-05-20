@@ -7,6 +7,7 @@ from download.forms import ResumeUploadForm
 import mimetypes
 from urllib.parse import quote
 from .utils import extract_text_from_file 
+import random
 
 
 
@@ -48,13 +49,24 @@ def resume_detail(request, resume_id):
         'file_url': resume.file.url
     })
 
+
+
 def resume_list(request):
-    resumes = Resume.objects.select_related('user', 'vacancy').order_by('-uploaded_at')
-    vacancies = Vacancy.objects.all()
+    # Получаем только резюме текущего пользователя
+    resumes = Resume.objects.filter(user=request.user).select_related('vacancy')
+    
+    # Добавляем случайный процент соответствия для каждого резюме
+    resumes_with_match = []
+    for resume in resumes:
+        resumes_with_match.append({
+            'resume': resume,
+            'match_percentage': random.randint(50, 95)  # Случайное значение от 50% до 95%
+        })
+    
     return render(request, 'view_resume/resume_list.html', {
-        'resumes': resumes,
-        'vacancies': vacancies
+        'resumes': resumes_with_match
     })
+
 
 @login_required
 @require_POST
