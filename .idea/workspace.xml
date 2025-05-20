@@ -5,25 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65d0a549-49a1-41de-a97e-ca3a2ba77b9f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/home/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/home/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/home/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/home/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/home/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/home/static/home/main.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/home/templates/home/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/home/templates/home/footer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/home/templates/home/header.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/home/templates/home/hero.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/home/templates/home/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/home/templates/home/resources.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/home/templates/home/use_cases.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/home/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/home/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hrai/home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,33 +27,33 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "yanatab"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;yanatab&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/ArtiomNosov/AI-recruiter.git",
-    "accountId": "dc7dee9d-ed30-48da-ac6c-6e82ccf983b7"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ArtiomNosov/AI-recruiter.git&quot;,
+    &quot;accountId&quot;: &quot;dc7dee9d-ed30-48da-ac6c-6e82ccf983b7&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2wS2bhqQy3THcYJm45FFGBBf3xq" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "origin3",
-    "last_opened_file_path": "C:/Users/Yana/AI-recruiter"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;origin3&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Yana/AI-recruiter&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Yana\AI-recruiter\hrai" />
