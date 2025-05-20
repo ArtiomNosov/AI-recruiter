@@ -3,4 +3,4 @@ __pycache__/
 *.pyc__pycache__/
 *.pyc
 .venv/
-idea
+.idea/workspace.xml
