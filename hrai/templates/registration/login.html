@@ -1,24 +1,63 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div style="max-width:400px;margin:2rem auto;font-family:Arial,sans-serif;">
-    <h2 style="text-align:center;color:#06a68a;">Вход в HRAI</h2>
-    <form method="post" novalidate>
-      {% csrf_token %}
-      <div style="margin-bottom:1rem;">
-        {{ form.username.label_tag }}<br>
-        {{ form.username }}<br>
-        {{ form.username.errors }}
-      </div>
-      <div style="margin-bottom:1rem;">
-        {{ form.password.label_tag }}<br>
-        {{ form.password }}<br>
-        {{ form.password.errors }}
-      </div>
-      <button type="submit"
-              style="width:100%;padding:.75rem;background:#06a68a;color:#fff;border:none;border-radius:4px;">
-        Войти
-      </button>
-    </form>
+  <div style="display: flex; min-height: 100vh; justify-content: center; align-items: center; font-family: Arial, sans-serif;">
+    <div style="width: 100%; max-width: 400px; padding: 20px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 8px;">
+      <h2 style="text-align: center; color: #3f3f3f; margin-bottom: 1.5rem;">Вход в AI-recruter</h2>
+      <form method="post" novalidate>
+        {% csrf_token %}
+        
+        <!-- Поле username -->
+        <div style="margin-bottom: 1rem; text-align: center;">
+          <input type="text" 
+                 name="{{ form.username.name }}" 
+                 id="{{ form.username.id_for_label }}" 
+                 placeholder="Имя пользователя"
+                 style="width: 100%; 
+                        padding: 8px;
+                        margin: 4px 0;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        box-sizing: border-box;"><br>
+          {{ form.username.errors }}
+        </div>
+
+        <!-- Поле password -->
+        <div style="margin-bottom: 1.5rem; text-align: center;">
+          <input type="password" 
+                 name="{{ form.password.name }}" 
+                 id="{{ form.password.id_for_label }}" 
+                 placeholder="Пароль"
+                 style="width: 100%; 
+                        padding: 8px;
+                        margin: 4px 0;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        box-sizing: border-box;"><br>
+          {{ form.password.errors }}
+        </div>
+
+        <button type="submit" style="width: 100%; padding: 0.75rem; background: #3f3f3f; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
+          Войти
+        </button>
+      </form>
+    </div>
   </div>
+
+  <style>
+    .errorlist {
+      text-align: center;
+      list-style: none;
+      padding-left: 0;
+      color: #ff4444;
+      margin: 4px 0 0 0;
+      font-size: 0.9em;
+    }
+    
+    /* Стиль для плейсхолдера */
+    ::placeholder {
+      color: #999;
+      opacity: 1; /* Для Firefox */
+    }
+  </style>
 {% endblock %}
