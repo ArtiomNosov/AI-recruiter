@@ -22,6 +22,8 @@ class ResumeUploadView(LoginRequiredMixin, FormView):
     def form_valid(self, form):
         resume = form.save(commit=False)
         resume.user = self.request.user
+        file_ext = resume.file.name.rsplit('.', 1)[-1].lower() if resume.file and '.' in resume.file.name else ''
+        resume.fmt = 'pdf' if file_ext == 'pdf' else 'doc'
         resume.save()
         # сохраняем и отсылаем на панель инструментов
         return super().form_valid(form)

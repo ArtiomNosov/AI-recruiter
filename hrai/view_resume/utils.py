@@ -20,8 +20,8 @@ def extract_text_from_file(file_path):
 def extract_doc_text(file_path):
     """Извлекает текст из старых .doc файлов с помощью antiword"""
     try:
-        result = subprocess.run(['antiword', file_path], 
-                              capture_output=True, text=True)
+        # Use end-of-options marker and a timeout to avoid option injection and hangs
+        result = subprocess.run(['antiword', '--', file_path], capture_output=True, text=True, timeout=10)
         return result.stdout if result.returncode == 0 else None
-    except:
+    except Exception:
         return None

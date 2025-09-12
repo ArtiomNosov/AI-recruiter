@@ -58,17 +58,16 @@ def resume_list(request):
 
 @login_required
 @require_POST
-
 def like_resume(request, resume_id):
     resume = get_object_or_404(Resume, pk=resume_id)
-    action = request.GET.get('action')
+    action = request.POST.get('action')
     
     if action == 'like':
         resume.likes.add(request.user)
     elif action == 'dislike':
         resume.likes.remove(request.user)
     
-    return redirect('view_resume', pk=resume_id)
+    return redirect('resume_detail', resume_id=resume_id)
 
 
 @login_required
