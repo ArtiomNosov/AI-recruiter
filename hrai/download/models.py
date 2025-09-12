@@ -20,6 +20,7 @@ class Resume(models.Model):
     file    = models.FileField("Файл резюме", upload_to='resumes/')
     fmt     = models.CharField("Формат", max_length=4, choices=FORMAT_CHOICES)
     uploaded_at = models.DateTimeField("Дата загрузки", auto_now_add=True)
+    likes   = models.ManyToManyField(User, related_name='liked_resumes', blank=True)
 
     def __str__(self):
         return f"{self.user.username} → {self.vacancy.title}"
